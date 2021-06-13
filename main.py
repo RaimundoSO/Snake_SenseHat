@@ -1,6 +1,6 @@
 from sense_hat import SenseHat
 from time import sleep
-
+from nice_functions import *
 from objects import Snake
 
 sense = SenseHat()
@@ -10,16 +10,18 @@ ejecucion = True
 serpiente = Snake(3, 3)
 
 game_over = False
+direccion = [1, 0]
 
 while ejecucion:
-    direccion = direction()
     
+    direccion = direcciones(sense, direccion)
+    print(direccion)
     serpiente.move(direccion)
     sense.clear()
 
     contador = 0
     for i in serpiente.pixels: 
-        if i == serpiente[0] and contador !=0:
+        if i == serpiente.pixels[0] and contador !=0:
             game_over = True
             ejecucion = False
         contador += 1

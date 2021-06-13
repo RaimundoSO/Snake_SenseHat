@@ -1,5 +1,4 @@
 from random import randrange
-from objects import Snake
 from sense_hat import SenseHat
 
 def new_apple(snake):
@@ -19,20 +18,21 @@ def border_path(number):
     else:
         return number
 
-def direction():
+def direcciones(sense, last_direction):
     for event in sense.stick.get_events():
         if event.direction == "right":
             print("Derecha")
-            return [1, 0]
+            last_direction = [1, 0]
         elif event.direction == "left":
             print("Izquierda")
-            return [-1, 0]
+            last_direction = [-1, 0]
         elif event.direction == "up":
             print("Arriba")
-            return [0, -1]
+            last_direction = [0, -1]
         elif event.direction == "down":
             print("Abajo")
-            return [0, 1]
+            last_direction = [0, 1]
         elif event.direction == "middle":
             print("Centro")
-            return [0, 0]
+            last_direction = [0, 0]
+    return last_direction
